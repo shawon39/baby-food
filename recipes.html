@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>সব রেসিপি — শিশুর খাবার</title>
+<meta name="description" content="বেলা ও দেশ অনুযায়ী শিশুর খাবারের রেসিপি খুঁজুন।">
+<link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Noto+Serif+Bengali:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="recipes">
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <h1>রেসিপি</h1>
+      <p>বেলা, দেশ বা উপকরণ দিয়ে খুঁজুন</p>
+    </div>
+
+    <div class="filters">
+      <span class="filter-label">বেলা:</span>
+      <div id="cat-filters" style="display:flex;gap:8px;flex-wrap:wrap"></div>
+    </div>
+    <div class="filters">
+      <span class="filter-label">দেশ:</span>
+      <div id="cui-filters" style="display:flex;gap:8px;flex-wrap:wrap"></div>
+      <input class="search" id="search" type="search" placeholder="রেসিপি বা উপকরণ খুঁজুন…" aria-label="রেসিপি খুঁজুন">
+    </div>
+
+    <h2 id="list-heading" style="font-size:1.15rem"></h2>
+    <div class="grid grid-card" id="list"></div>
+  </div>
+</section>
+
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

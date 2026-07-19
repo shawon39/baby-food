@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300" role="img">
+  <rect width="400" height="300" fill="#fdeadb"/>
+  <circle cx="330" cy="58" r="34" fill="#fff" opacity=".35"/>
+  <circle cx="62" cy="46" r="20" fill="#fff" opacity=".3"/>
+  
+    <ellipse cx="200" cy="212" rx="140" ry="44" fill="#e6dccf" opacity=".5"/>
+    <ellipse cx="200" cy="204" rx="138" ry="43" fill="#ffffff" stroke="#e6dccf" stroke-width="3"/>
+    <ellipse cx="200" cy="200" rx="100" ry="31" fill="#ffffff" stroke="#e6dccf" stroke-width="2"/>
+    <ellipse cx="200" cy="192" rx="84" ry="26" fill="#e6cfa3"/>
+    <clipPath id="cruti-sobji"><ellipse cx="200" cy="192" rx="84" ry="26"/></clipPath>
+    <g clip-path="url(#cruti-sobji)"><ellipse cx="218.0" cy="185.8" rx="11.3" ry="8.1" fill="#c98f4a" opacity=".92"/><ellipse cx="178.3" cy="178.2" rx="10.5" ry="7.6" fill="#7fa356" opacity=".92"/><ellipse cx="227.4" cy="206.5" rx="7.7" ry="5.6" fill="#e0a13f" opacity=".92"/><ellipse cx="206.9" cy="190.9" rx="5.6" ry="4.0" fill="#c98f4a" opacity=".92"/><ellipse cx="160.7" cy="206.2" rx="5.6" ry="4.0" fill="#7fa356" opacity=".92"/><ellipse cx="173.1" cy="200.0" rx="6.2" ry="4.5" fill="#e0a13f" opacity=".92"/><ellipse cx="251.6" cy="188.0" rx="5.7" ry="4.1" fill="#c98f4a" opacity=".92"/><ellipse cx="187.7" cy="185.1" rx="9.1" ry="6.5" fill="#7fa356" opacity=".92"/><ellipse cx="211.7" cy="179.0" rx="10.8" ry="7.8" fill="#e0a13f" opacity=".92"/></g>
+</svg>

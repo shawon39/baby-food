@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300" role="img">
+  <rect width="400" height="300" fill="#fdf1dc"/>
+  <circle cx="330" cy="58" r="34" fill="#fff" opacity=".35"/>
+  <circle cx="62" cy="46" r="20" fill="#fff" opacity=".3"/>
+  
+  <ellipse cx="200" cy="252" rx="112" ry="14" fill="#e6dccf" opacity=".4"/>
+  <path d="M92 168 q8 76 108 78 q100 -2 108 -78 Z" fill="#ffffff" stroke="#e6dccf" stroke-width="3"/>
+  <ellipse cx="200" cy="168" rx="110" ry="20" fill="#ffffff" stroke="#e6dccf" stroke-width="3"/>
+  <ellipse cx="200" cy="166" rx="96" ry="16" fill="#f0e6cc"/>
+  <clipPath id="calu-mach-mash"><ellipse cx="200" cy="166" rx="96" ry="16"/></clipPath>
+  <g clip-path="url(#calu-mach-mash)"><ellipse cx="200.5" cy="160.0" rx="11.4" ry="8.2" fill="#e8d5a0" opacity=".92"/><ellipse cx="167.7" cy="172.1" rx="6.5" ry="4.7" fill="#d9a86a" opacity=".92"/><ellipse cx="166.9" cy="164.3" rx="11.9" ry="8.6" fill="#e8d5a0" opacity=".92"/><ellipse cx="160.2" cy="159.2" rx="8.2" ry="5.9" fill="#d9a86a" opacity=".92"/><ellipse cx="160.0" cy="159.2" rx="5.0" ry="3.6" fill="#e8d5a0" opacity=".92"/><ellipse cx="147.7" cy="168.3" rx="7.5" ry="5.4" fill="#d9a86a" opacity=".92"/><ellipse cx="235.5" cy="161.3" rx="11.0" ry="8.0" fill="#e8d5a0" opacity=".92"/><ellipse cx="249.1" cy="171.8" rx="7.6" ry="5.5" fill="#d9a86a" opacity=".92"/><ellipse cx="263.7" cy="169.1" rx="7.5" ry="5.4" fill="#e8d5a0" opacity=".92"/><ellipse cx="179.6" cy="159.3" rx="9.9" ry="7.1" fill="#d9a86a" opacity=".92"/></g>
+</svg>
