@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300" role="img">
+  <rect width="400" height="300" fill="#e9eef7"/>
+  <circle cx="330" cy="58" r="34" fill="#fff" opacity=".35"/>
+  <circle cx="62" cy="46" r="20" fill="#fff" opacity=".3"/>
+  
+  <ellipse cx="200" cy="252" rx="112" ry="14" fill="#e6dccf" opacity=".4"/>
+  <path d="M92 168 q8 76 108 78 q100 -2 108 -78 Z" fill="#ffffff" stroke="#e6dccf" stroke-width="3"/>
+  <ellipse cx="200" cy="168" rx="110" ry="20" fill="#ffffff" stroke="#e6dccf" stroke-width="3"/>
+  <ellipse cx="200" cy="166" rx="96" ry="16" fill="#fbf8f0"/>
+  <clipPath id="cghore-pata-doi"><ellipse cx="200" cy="166" rx="96" ry="16"/></clipPath>
+  <g clip-path="url(#cghore-pata-doi)"><ellipse cx="245.1" cy="164.2" rx="10.4" ry="7.5" fill="#f2ece0" opacity=".92"/><ellipse cx="158.7" cy="168.5" rx="5.5" ry="4.0" fill="#e8dcc8" opacity=".92"/><ellipse cx="220.8" cy="156.0" rx="11.7" ry="8.4" fill="#f2ece0" opacity=".92"/><ellipse cx="252.9" cy="167.7" rx="5.0" ry="3.6" fill="#e8dcc8" opacity=".92"/><ellipse cx="162.8" cy="157.4" rx="8.6" ry="6.2" fill="#f2ece0" opacity=".92"/><ellipse cx="202.3" cy="168.2" rx="9.3" ry="6.7" fill="#e8dcc8" opacity=".92"/><ellipse cx="150.2" cy="168.2" rx="7.1" ry="5.1" fill="#f2ece0" opacity=".92"/><ellipse cx="188.3" cy="161.6" rx="7.9" ry="5.7" fill="#e8dcc8" opacity=".92"/><ellipse cx="156.7" cy="167.5" rx="7.1" ry="5.1" fill="#f2ece0" opacity=".92"/><ellipse cx="187.3" cy="155.6" rx="5.7" ry="4.1" fill="#e8dcc8" opacity=".92"/></g>
+</svg>

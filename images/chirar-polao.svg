@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300" role="img">
+  <rect width="400" height="300" fill="#e9eef7"/>
+  <circle cx="330" cy="58" r="34" fill="#fff" opacity=".35"/>
+  <circle cx="62" cy="46" r="20" fill="#fff" opacity=".3"/>
+  
+  <ellipse cx="200" cy="252" rx="112" ry="14" fill="#e6dccf" opacity=".4"/>
+  <path d="M92 168 q8 76 108 78 q100 -2 108 -78 Z" fill="#ffffff" stroke="#e6dccf" stroke-width="3"/>
+  <ellipse cx="200" cy="168" rx="110" ry="20" fill="#ffffff" stroke="#e6dccf" stroke-width="3"/>
+  <ellipse cx="200" cy="166" rx="96" ry="16" fill="#f0e4c2"/>
+  <clipPath id="cchirar-polao"><ellipse cx="200" cy="166" rx="96" ry="16"/></clipPath>
+  <g clip-path="url(#cchirar-polao)"><ellipse cx="194.1" cy="155.6" rx="5.7" ry="4.1" fill="#e0a13f" opacity=".92"/><ellipse cx="193.4" cy="164.1" rx="8.6" ry="6.2" fill="#7fa356" opacity=".92"/><ellipse cx="260.8" cy="163.6" rx="9.9" ry="7.1" fill="#e8862f" opacity=".92"/><ellipse cx="236.2" cy="160.2" rx="10.5" ry="7.6" fill="#e0a13f" opacity=".92"/><ellipse cx="161.4" cy="166.5" rx="5.1" ry="3.6" fill="#7fa356" opacity=".92"/><ellipse cx="258.2" cy="164.6" rx="10.7" ry="7.7" fill="#e8862f" opacity=".92"/><ellipse cx="140.8" cy="162.9" rx="9.1" ry="6.5" fill="#e0a13f" opacity=".92"/><ellipse cx="152.8" cy="163.9" rx="8.7" ry="6.3" fill="#7fa356" opacity=".92"/><ellipse cx="203.5" cy="157.3" rx="7.8" ry="5.6" fill="#e8862f" opacity=".92"/><ellipse cx="240.4" cy="158.8" rx="6.6" ry="4.7" fill="#e0a13f" opacity=".92"/></g>
+</svg>

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300" role="img">
+  <rect width="400" height="300" fill="#e9eef7"/>
+  <circle cx="330" cy="58" r="34" fill="#fff" opacity=".35"/>
+  <circle cx="62" cy="46" r="20" fill="#fff" opacity=".3"/>
+  
+    <ellipse cx="200" cy="212" rx="140" ry="44" fill="#e6dccf" opacity=".5"/>
+    <ellipse cx="200" cy="204" rx="138" ry="43" fill="#ffffff" stroke="#e6dccf" stroke-width="3"/>
+    <ellipse cx="200" cy="200" rx="100" ry="31" fill="#ffffff" stroke="#e6dccf" stroke-width="2"/>
+    <ellipse cx="200" cy="192" rx="84" ry="26" fill="#f0dfa8"/>
+    <clipPath id="cgnocchi-romana"><ellipse cx="200" cy="192" rx="84" ry="26"/></clipPath>
+    <g clip-path="url(#cgnocchi-romana)"><ellipse cx="190.7" cy="194.5" rx="10.8" ry="7.8" fill="#e8c96a" opacity=".92"/><ellipse cx="254.6" cy="197.1" rx="9.6" ry="6.9" fill="#d9a24e" opacity=".92"/><ellipse cx="203.9" cy="189.3" rx="6.1" ry="4.4" fill="#c98a3a" opacity=".92"/><ellipse cx="179.0" cy="176.7" rx="6.8" ry="4.9" fill="#e8c96a" opacity=".92"/><ellipse cx="220.8" cy="203.0" rx="9.3" ry="6.7" fill="#d9a24e" opacity=".92"/><ellipse cx="158.6" cy="194.9" rx="6.4" ry="4.6" fill="#c98a3a" opacity=".92"/><ellipse cx="200.4" cy="202.7" rx="6.1" ry="4.4" fill="#e8c96a" opacity=".92"/><ellipse cx="202.4" cy="198.2" rx="10.8" ry="7.8" fill="#d9a24e" opacity=".92"/><ellipse cx="237.0" cy="192.0" rx="10.8" ry="7.8" fill="#c98a3a" opacity=".92"/></g>
+</svg>

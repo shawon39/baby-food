@@ -8,10 +8,12 @@ Plain HTML/CSS/JS — no build step, no dependencies. Deploys as static files.
 
 ## Contents
 
-- **৩২টি রেসিপি** across five meal times: সকালের নাস্তা, দুপুরের খাবার, বিকেলের নাস্তা,
-  রাতের খাবার, ঘুমানোর আগে
-- **দুটি সাপ্তাহিক তালিকা** — one for Bangladesh, one for Italy (7 days × 5 meals)
-- **২২টি ফল ও সবজি** with preparation notes, benefits and cautions
+- **৫৮টি রেসিপি** across five meal times: সকালের নাস্তা (১২), দুপুরের খাবার (১৬),
+  বিকেলের নাস্তা (১২), রাতের খাবার (১১), ঘুমানোর আগে (৭)
+- **দুটি সাপ্তাহিক তালিকা** — one for Bangladesh, one for Italy (7 days × 5 meals).
+  The Bangladesh week deliberately includes লাল শাক twice and কলিজা once; the Italy week
+  pairs legumes with grains — both target iron, the main deficiency risk at this age.
+- **২৮টি ফল ও সবজি** with preparation notes, benefits and cautions
 - **নির্দেশিকা** — salt, sugar, portions, milk, choking hazards, allergens
 
 ## Structure

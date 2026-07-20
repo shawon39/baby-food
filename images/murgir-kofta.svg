@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300" role="img">
+  <rect width="400" height="300" fill="#e8f4ea"/>
+  <circle cx="330" cy="58" r="34" fill="#fff" opacity=".35"/>
+  <circle cx="62" cy="46" r="20" fill="#fff" opacity=".3"/>
+  
+    <ellipse cx="200" cy="212" rx="140" ry="44" fill="#e6dccf" opacity=".5"/>
+    <ellipse cx="200" cy="204" rx="138" ry="43" fill="#ffffff" stroke="#e6dccf" stroke-width="3"/>
+    <ellipse cx="200" cy="200" rx="100" ry="31" fill="#ffffff" stroke="#e6dccf" stroke-width="2"/>
+    <ellipse cx="200" cy="192" rx="84" ry="26" fill="#f0e6cc"/>
+    <clipPath id="cmurgir-kofta"><ellipse cx="200" cy="192" rx="84" ry="26"/></clipPath>
+    <g clip-path="url(#cmurgir-kofta)"><ellipse cx="197.2" cy="182.6" rx="6.6" ry="4.7" fill="#a8663c" opacity=".92"/><ellipse cx="228.2" cy="183.2" rx="9.9" ry="7.1" fill="#8a4f2f" opacity=".92"/><ellipse cx="230.2" cy="202.4" rx="7.5" ry="5.4" fill="#e8d5a0" opacity=".92"/><ellipse cx="150.1" cy="202.9" rx="10.0" ry="7.2" fill="#a8663c" opacity=".92"/><ellipse cx="152.4" cy="185.5" rx="5.6" ry="4.0" fill="#8a4f2f" opacity=".92"/><ellipse cx="180.5" cy="181.0" rx="7.0" ry="5.0" fill="#e8d5a0" opacity=".92"/><ellipse cx="175.8" cy="186.1" rx="9.1" ry="6.6" fill="#a8663c" opacity=".92"/><ellipse cx="156.7" cy="195.7" rx="11.4" ry="8.2" fill="#8a4f2f" opacity=".92"/><ellipse cx="156.6" cy="186.8" rx="7.6" ry="5.5" fill="#e8d5a0" opacity=".92"/></g>
+</svg>

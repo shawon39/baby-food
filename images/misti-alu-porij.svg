@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300" role="img">
+  <rect width="400" height="300" fill="#e9eef7"/>
+  <circle cx="330" cy="58" r="34" fill="#fff" opacity=".35"/>
+  <circle cx="62" cy="46" r="20" fill="#fff" opacity=".3"/>
+  
+  <ellipse cx="200" cy="252" rx="112" ry="14" fill="#e6dccf" opacity=".4"/>
+  <path d="M92 168 q8 76 108 78 q100 -2 108 -78 Z" fill="#ffffff" stroke="#e6dccf" stroke-width="3"/>
+  <ellipse cx="200" cy="168" rx="110" ry="20" fill="#ffffff" stroke="#e6dccf" stroke-width="3"/>
+  <ellipse cx="200" cy="166" rx="96" ry="16" fill="#e8944a"/>
+  <clipPath id="cmisti-alu-porij"><ellipse cx="200" cy="166" rx="96" ry="16"/></clipPath>
+  <g clip-path="url(#cmisti-alu-porij)"><ellipse cx="158.5" cy="166.5" rx="10.6" ry="7.6" fill="#d97a34" opacity=".92"/><ellipse cx="229.8" cy="174.2" rx="6.0" ry="4.3" fill="#f2b06a" opacity=".92"/><ellipse cx="264.3" cy="169.7" rx="6.2" ry="4.4" fill="#d97a34" opacity=".92"/><ellipse cx="206.8" cy="175.3" rx="10.8" ry="7.8" fill="#f2b06a" opacity=".92"/><ellipse cx="259.3" cy="168.4" rx="9.4" ry="6.8" fill="#d97a34" opacity=".92"/><ellipse cx="180.3" cy="174.7" rx="10.5" ry="7.6" fill="#f2b06a" opacity=".92"/><ellipse cx="249.6" cy="167.6" rx="6.1" ry="4.4" fill="#d97a34" opacity=".92"/><ellipse cx="247.5" cy="168.7" rx="9.3" ry="6.7" fill="#f2b06a" opacity=".92"/><ellipse cx="253.0" cy="167.3" rx="11.6" ry="8.3" fill="#d97a34" opacity=".92"/><ellipse cx="154.6" cy="167.6" rx="5.7" ry="4.1" fill="#f2b06a" opacity=".92"/></g>
+</svg>

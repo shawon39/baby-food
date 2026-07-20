@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300" role="img">
+  <rect width="400" height="300" fill="#fbe9ee"/>
+  <circle cx="330" cy="58" r="34" fill="#fff" opacity=".35"/>
+  <circle cx="62" cy="46" r="20" fill="#fff" opacity=".3"/>
+  
+  <ellipse cx="200" cy="252" rx="112" ry="14" fill="#e6dccf" opacity=".4"/>
+  <path d="M92 168 q8 76 108 78 q100 -2 108 -78 Z" fill="#ffffff" stroke="#e6dccf" stroke-width="3"/>
+  <ellipse cx="200" cy="168" rx="110" ry="20" fill="#ffffff" stroke="#e6dccf" stroke-width="3"/>
+  <ellipse cx="200" cy="166" rx="96" ry="16" fill="#e8a83c"/>
+  <clipPath id="cmisti-kumra-dal-bhat"><ellipse cx="200" cy="166" rx="96" ry="16"/></clipPath>
+  <g clip-path="url(#cmisti-kumra-dal-bhat)"><ellipse cx="228.6" cy="165.6" rx="9.1" ry="6.6" fill="#d98f2f" opacity=".92"/><ellipse cx="219.6" cy="161.2" rx="11.0" ry="7.9" fill="#f0d08a" opacity=".92"/><ellipse cx="258.2" cy="171.0" rx="6.0" ry="4.3" fill="#c97a2f" opacity=".92"/><ellipse cx="251.3" cy="165.6" rx="6.7" ry="4.8" fill="#d98f2f" opacity=".92"/><ellipse cx="265.5" cy="165.5" rx="9.3" ry="6.7" fill="#f0d08a" opacity=".92"/><ellipse cx="175.0" cy="171.8" rx="11.7" ry="8.4" fill="#c97a2f" opacity=".92"/><ellipse cx="179.2" cy="166.1" rx="9.6" ry="6.9" fill="#d98f2f" opacity=".92"/><ellipse cx="140.9" cy="170.2" rx="10.6" ry="7.6" fill="#f0d08a" opacity=".92"/><ellipse cx="215.5" cy="159.7" rx="6.7" ry="4.8" fill="#c97a2f" opacity=".92"/><ellipse cx="241.1" cy="164.0" rx="7.2" ry="5.2" fill="#d98f2f" opacity=".92"/></g>
+</svg>
