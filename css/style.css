@@ -25,7 +25,10 @@
   --shadow-sm:   0 1px 3px rgba(80, 50, 25, .08);
   --wrap:        1120px;
 
-  --ff-body:     'Hind Siliguri', 'Noto Sans Bengali', system-ui, sans-serif;
+  /* 'BnNumerals' সবার আগে — কিন্তু সেটির unicode-range শুধু বাংলা অঙ্ক,
+     তাই বাকি সব অক্ষরে পরের ফন্টগুলোই ব্যবহার হয় */
+  --ff-body:     'BnNumerals', 'Hind Siliguri', 'Noto Sans Bengali', system-ui, sans-serif;
+  /* শিরোনামে Noto Serif Bengali-র নিজের অঙ্কই স্পষ্ট, তাই সেখানে বদলের দরকার নেই */
   --ff-head:     'Noto Serif Bengali', 'Hind Siliguri', Georgia, serif;
 }
 
@@ -47,6 +50,23 @@
     --shadow:     0 2px 4px rgba(0,0,0,.2), 0 8px 24px rgba(0,0,0,.3);
     --shadow-sm:  0 1px 3px rgba(0,0,0,.3);
   }
+}
+
+/* ------------------------------------------------------------
+   বাংলা অঙ্কের জন্য আলাদা ফন্ট
+   Hind Siliguri-তে ১ আর ৬ প্রায় একই দেখতে। রেসিপিতে "১ কাপ দুধ"
+   আর "৬ কাপ দুধ" গুলিয়ে গেলে সেটা সত্যিকারের ভুল রান্না — তাই শুধু
+   বাংলা অঙ্ক (০–৯) Noto Sans Bengali দিয়ে দেখানো হয়, যেখানে দুটি
+   আলাদা করে চেনা যায়। বাকি সব লেখা আগের ফন্টেই থাকে।
+   ------------------------------------------------------------ */
+@font-face {
+  font-family: 'BnNumerals';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: local('Noto Sans Bengali'), local('NotoSansBengali-Regular'),
+       url(https://fonts.gstatic.com/s/notosansbengali/v33/Cn-fJsCGWQxOjaGwMQ6fIiMywrNJIky6nvd8BjzVMvJx2mc4I3mYrtU3_I-n.woff2) format('woff2');
+  unicode-range: U+09E6-09EF;   /* শুধু ০ ১ ২ ৩ ৪ ৫ ৬ ৭ ৮ ৯ */
 }
 
 * { box-sizing: border-box; }
