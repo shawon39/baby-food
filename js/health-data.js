@@ -176,6 +176,8 @@ const SOURCES = [
   { label: 'NHS — শিশুর ভিটামিন', url: 'https://www.nhs.uk/baby/weaning-and-feeding/vitamins-for-children/' },
   { label: 'NHS — ভিটামিন ডি', url: 'https://www.nhs.uk/conditions/vitamins-and-minerals/vitamin-d/' },
   { label: 'NHS — বাছাবাছি করে খাওয়া শিশু', url: 'https://www.nhs.uk/baby/weaning-and-feeding/fussy-eaters/' },
+  { label: 'NHS — ছোট শিশুকে কী খাওয়াবেন (দুধের সর্বনিম্ন মাত্রা)', url: 'https://www.nhs.uk/baby/weaning-and-feeding/what-to-feed-young-children/' },
+  { label: 'ESPGHAN — শিশুর আয়রন সংক্রান্ত অবস্থানপত্র (দুধের উপরের সীমা)', url: 'https://pubmed.ncbi.nlm.nih.gov/24135983/' },
   { label: 'NHS — রিকেটসের লক্ষণ', url: 'https://www.nhs.uk/conditions/rickets-and-osteomalacia/symptoms/' },
   { label: 'AAP — দুই বছরের শিশুর খাওয়া', url: 'https://www.healthychildren.org/English/ages-stages/toddler/nutrition/Pages/Feeding-and-Nutrition-Your-Two-Year-Old.aspx' },
   { label: 'AAP — বাছাবাছি করে খাওয়া', url: 'https://www.healthychildren.org/English/ages-stages/toddler/nutrition/Pages/Picky-Eaters.aspx' },

@@ -56,16 +56,17 @@ body {
   background: var(--bg);
   color: var(--text);
   font-family: var(--ff-body);
-  /* বাংলা যুক্তাক্ষর পড়তে যেন কষ্ট না হয়, তাই খুব ছোট করা হয়নি */
-  font-size: 15.5px;
-  line-height: 1.72;
+  /* বাংলা যুক্তাক্ষর (ক্ষ, ঙ্গ) ল্যাটিন হরফের আগেই পড়া কঠিন হয়ে যায়,
+     তাই এর নিচে আর নামানো হয়নি */
+  font-size: 14.5px;
+  line-height: 1.7;
   -webkit-font-smoothing: antialiased;
 }
 
 h1, h2, h3, h4 { font-family: var(--ff-head); line-height: 1.4; margin: 0 0 .5em; font-weight: 600; }
-h1 { font-size: 1.7rem; }
-h2 { font-size: 1.3rem; }
-h3 { font-size: 1.08rem; }
+h1 { font-size: 1.62rem; }
+h2 { font-size: 1.26rem; }
+h3 { font-size: 1.06rem; }
 p  { margin: 0 0 1em; }
 a  { color: var(--brand-dark); }
 
@@ -380,7 +381,7 @@ table.plan td a:hover { color: var(--brand-dark); text-decoration: underline; }
   .two-col { grid-template-columns: 1fr; }
   .hero { padding: 40px 0 44px; }
   section { padding: 36px 0; }
-  body { font-size: 15px; }
+  body { font-size: 14px; }
   .site-header .wrap { min-height: 58px; padding-block: 8px; }
   .logo { font-size: 1.05rem; }
   .nav a { padding: 6px 10px; font-size: .88rem; }
