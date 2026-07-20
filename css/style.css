@@ -102,6 +102,44 @@ img { max-width: 100%; display: block; }
 .nav a:hover { background: var(--bg-alt); color: var(--text); }
 .nav a.active { background: var(--brand-soft); color: var(--brand-dark); font-weight: 600; }
 
+/* ---------------- settings ---------------- */
+.settings { position: relative; margin-inline-start: 4px; }
+.settings-btn {
+  display: flex; align-items: center; gap: 5px;
+  background: var(--bg-alt); border: 1px solid var(--line);
+  border-radius: 99px; padding: 6px 12px; cursor: pointer;
+  font-family: inherit; font-size: .95rem; line-height: 1;
+  transition: background .15s, border-color .15s;
+}
+.settings-btn:hover { background: var(--brand-soft); border-color: var(--brand); }
+.settings-btn .settings-flag { font-size: 1.05rem; }
+
+.settings-panel {
+  position: absolute; inset-inline-end: 0; top: calc(100% + 10px);
+  width: 260px; z-index: 60;
+  background: var(--surface); border: 1px solid var(--line);
+  border-radius: var(--radius); box-shadow: var(--shadow);
+  padding: 16px 18px;
+}
+.settings-panel[hidden] { display: none; }
+.settings-panel h4 {
+  margin: 0 0 10px; font-family: var(--ff-body);
+  font-size: .92rem; font-weight: 600; color: var(--text-soft);
+}
+.settings-opt {
+  display: flex; align-items: center; gap: 10px;
+  padding: 9px 11px; border-radius: var(--radius-sm);
+  cursor: pointer; font-size: .98rem;
+  transition: background .12s;
+}
+.settings-opt:hover { background: var(--bg-alt); }
+.settings-opt input { accent-color: var(--brand); width: 16px; height: 16px; cursor: pointer; }
+.settings-opt:has(input:checked) { background: var(--brand-soft); font-weight: 600; }
+.settings-note {
+  margin: 12px 0 0; padding-top: 11px; border-top: 1px solid var(--line);
+  font-size: .8rem; line-height: 1.6; color: var(--text-soft);
+}
+
 /* ---------------- hero ---------------- */
 .hero {
   background: linear-gradient(160deg, var(--brand-soft), var(--bg-alt) 70%);
@@ -268,11 +306,19 @@ table.plan td a:hover { color: var(--brand-dark); text-decoration: underline; }
   .site-header .wrap { min-height: 58px; padding-block: 8px; }
   .logo { font-size: 1.05rem; }
   .nav a { padding: 6px 10px; font-size: .88rem; }
+
+  /* ছোট পর্দায় সেটিংস বোতাম বাঁ দিকে চলে আসে, তাই প্যানেল ডান দিকে খুলবে —
+     নয়তো পর্দার বাইরে বেরিয়ে যায় */
+  .settings-panel {
+    inset-inline-end: auto;
+    inset-inline-start: 0;
+    width: min(260px, calc(100vw - 40px));
+  }
 }
 
 /* ---------------- print (রেসিপি ছাপানোর জন্য) ---------------- */
 @media print {
-  .site-header, .site-footer, .backlink, .btn, .filters, .no-print { display: none !important; }
+  .site-header, .site-footer, .backlink, .btn, .filters, .settings, .no-print { display: none !important; }
   body { background: #fff; color: #000; font-size: 12pt; }
   .panel { border: 1px solid #ccc; background: #fff !important; page-break-inside: avoid; }
   .recipe-head { grid-template-columns: 1fr; }

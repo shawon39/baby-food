@@ -16,6 +16,22 @@ Plain HTML/CSS/JS — no build step, no dependencies. Deploys as static files.
 - **২৮টি ফল ও সবজি** with preparation notes, benefits and cautions
 - **নির্দেশিকা** — salt, sugar, portions, milk, choking hazards, allergens
 
+## Country setting
+
+Bangladeshi and Italian recipes are never shown together — the ⚙️ button in the header
+picks one country, and everything on the site follows it: category counts, the recipe
+listing, the fruit and vegetable guide, related recipes, and which weekly meal plan is
+displayed.
+
+- Default is **বাংলাদেশি**.
+- The choice is saved to `localStorage` under `shishur-khabar-desh`, so it persists across
+  visits on that browser. If storage is unavailable (private mode), it falls back to the
+  default rather than erroring.
+- Recipes marked `cuisine: 'both'` (দুই দেশেই) appear under **either** setting — they are
+  dishes that work in both countries, so they aren't part of the confusing mix.
+- Opening a direct link to a recipe from the other country still shows it, with a note
+  explaining the mismatch rather than hiding the page.
+
 ## Structure
 
 ```

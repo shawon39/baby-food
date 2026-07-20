@@ -11,6 +11,30 @@ const esc = (s) => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;
 /* সংখ্যা বাংলা অঙ্কে দেখানোর জন্য — বাকি সাইটের সাথে মিল রাখতে */
 const bn = (n) => String(n).replace(/\d/g, d => '০১২৩৪৫৬৭৮৯'[d]);
 
+/* ---------- দেশের পছন্দ (ব্রাউজারে সংরক্ষিত থাকে) ----------
+   বাংলাদেশি ও ইতালিয়ান রেসিপি একসাথে না দেখিয়ে একবারে একটি দেশ দেখানো হয়।
+   'both' চিহ্নিত রেসিপি দুই অবস্থাতেই দেখানো হয়, কারণ সেগুলো দুই দেশেই চলে। */
+const PREF_KEY = 'shishur-khabar-desh';
+const DEFAULT_PREF = 'bd';
+
+function getPref() {
+  try {
+    const v = localStorage.getItem(PREF_KEY);
+    return (v === 'bd' || v === 'it') ? v : DEFAULT_PREF;
+  } catch (e) {
+    return DEFAULT_PREF;   // প্রাইভেট মোডে localStorage বন্ধ থাকতে পারে
+  }
+}
+function setPref(v) {
+  try { localStorage.setItem(PREF_KEY, v); } catch (e) { /* সংরক্ষণ করা গেল না, তবু চলবে */ }
+}
+
+/* পছন্দ অনুযায়ী ফিল্টার */
+const matchesPref = (c) => c === 'both' || c === getPref();
+const visibleRecipes = (list = RECIPES) => list.filter(r => matchesPref(r.cuisine));
+const visibleInCategory = (id) => visibleRecipes(recipesInCategory(id));
+const visibleFoods = () => FOODS.filter(f => matchesPref(f.where));
+
 /* ছবি: রেসিপিতে photo দেওয়া থাকলে সেটি, নয়তো আঁকা ছবি।
    নিজের তোলা ছবি ব্যবহার করতে data.js-এ ঐ রেসিপিতে যোগ করুন:
    photo: 'images/khichuri.jpg'                                   */
@@ -25,7 +49,12 @@ const NAV = [
 ];
 
 /* ---------- শেয়ার্ড হেডার ও ফুটার ---------- */
+let rerenderPage = () => {};   // দেশ বদলালে চলতি পেজ আবার আঁকার জন্য
+
 function renderChrome(page) {
+  const pref = getPref();
+  const cur = getCuisine(pref);
+
   document.body.prepend(el(`
     <header class="site-header">
       <div class="wrap">
@@ -36,8 +65,47 @@ function renderChrome(page) {
         <nav class="nav">
           ${NAV.map(n => `<a href="${n.href}" class="${n.page === page ? 'active' : ''}">${n.label}</a>`).join('')}
         </nav>
+        <div class="settings">
+          <button class="settings-btn" id="settings-btn" aria-haspopup="dialog" aria-expanded="false"
+                  aria-label="সেটিংস — কোন দেশের রেসিপি দেখবেন">
+            <span class="gear" aria-hidden="true">⚙️</span>
+            <span class="settings-flag">${cur.flag}</span>
+          </button>
+          <div class="settings-panel" id="settings-panel" role="dialog" aria-label="সেটিংস" hidden>
+            <h4>কোন দেশের রেসিপি দেখবেন?</h4>
+            ${['bd', 'it'].map(id => {
+              const c = getCuisine(id);
+              return `<label class="settings-opt">
+                        <input type="radio" name="desh" value="${id}" ${id === pref ? 'checked' : ''}>
+                        <span>${c.flag} ${c.name}</span>
+                      </label>`;
+            }).join('')}
+            <p class="settings-note">দুই দেশেই চলে এমন রেসিপি সবসময় দেখানো হয়। আপনার পছন্দ এই ব্রাউজারে সংরক্ষিত থাকবে।</p>
+          </div>
+        </div>
       </div>
     </header>`));
+
+  const btn   = document.querySelector('#settings-btn');
+  const panel = document.querySelector('#settings-panel');
+
+  const close = () => { panel.hidden = true; btn.setAttribute('aria-expanded', 'false'); };
+  const open  = () => { panel.hidden = false; btn.setAttribute('aria-expanded', 'true'); };
+
+  btn.onclick = (e) => { e.stopPropagation(); panel.hidden ? open() : close(); };
+  panel.onclick = (e) => e.stopPropagation();
+  document.addEventListener('click', close);
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+
+  panel.querySelectorAll('input[name="desh"]').forEach(input => {
+    input.onchange = () => {
+      setPref(input.value);
+      document.querySelector('.settings-flag').textContent = getCuisine(input.value).flag;
+      close();
+      rerenderPage();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+  });
 
   document.body.append(el(`
     <footer class="site-footer">
@@ -80,11 +148,11 @@ function renderHome() {
       <h3>${c.name}</h3>
       <div class="time">${c.time}</div>
       <p>${c.desc}</p>
-      <div class="count">${bn(recipesInCategory(c.id).length)}টি রেসিপি</div>
+      <div class="count">${bn(visibleInCategory(c.id).length)}টি রেসিপি</div>
     </a>`).join('');
 
   // প্রতিটি ক্যাটাগরি থেকে একটি করে — মোট ৫টি
-  const featured = CATEGORIES.map(c => recipesInCategory(c.id)[0]).filter(Boolean);
+  const featured = CATEGORIES.map(c => visibleInCategory(c.id)[0]).filter(Boolean);
   document.querySelector('#featured').innerHTML = featured.map(recipeCard).join('');
 
   document.querySelector('#guidelines').innerHTML = GUIDELINES.slice(0, 4).map(g => `
@@ -98,32 +166,23 @@ function renderHome() {
    রেসিপির তালিকা
    ============================================================ */
 function renderRecipes() {
-  const state = { category: qs('category') || 'all', cuisine: 'all', q: '' };
+  const state = { category: qs('category') || 'all', q: '' };
 
-  const catBar = document.querySelector('#cat-filters');
-  const cuiBar = document.querySelector('#cui-filters');
-  const list   = document.querySelector('#list');
+  const catBar  = document.querySelector('#cat-filters');
+  const list    = document.querySelector('#list');
   const heading = document.querySelector('#list-heading');
-  const search = document.querySelector('#search');
+  const search  = document.querySelector('#search');
 
   catBar.innerHTML =
     `<button class="chip" data-cat="all">সব</button>` +
     CATEGORIES.map(c => `<button class="chip" data-cat="${c.id}">${c.name}</button>`).join('');
 
-  cuiBar.innerHTML =
-    `<button class="chip" data-cui="all">সব</button>` +
-    CUISINES.map(c => `<button class="chip" data-cui="${c.id}">${c.flag} ${c.name}</button>`).join('');
-
   function draw() {
     catBar.querySelectorAll('[data-cat]').forEach(b => b.classList.toggle('on', b.dataset.cat === state.category));
-    cuiBar.querySelectorAll('[data-cui]').forEach(b => b.classList.toggle('on', b.dataset.cui === state.cuisine));
 
     const q = state.q.trim();
-    const found = RECIPES.filter(r =>
+    const found = visibleRecipes().filter(r =>
       (state.category === 'all' || r.category === state.category) &&
-      // 'both' রেসিপি দুই দেশের ফিল্টারেই দেখাবে
-      (state.cuisine === 'all' || r.cuisine === state.cuisine ||
-        (r.cuisine === 'both' && state.cuisine !== 'both')) &&
       (!q || r.title.includes(q) || r.intro.includes(q) || r.ingredients.some(i => i.includes(q)))
     );
 
@@ -132,20 +191,20 @@ function renderRecipes() {
 
     list.innerHTML = found.length
       ? found.map(recipeCard).join('')
-      : `<div class="empty"><p>এই ফিল্টারে কোনো রেসিপি নেই।</p>
+      : `<div class="empty"><p>এই খোঁজে কোনো রেসিপি পাওয়া যায়নি।</p>
          <button class="btn btn-ghost" id="reset">সব রেসিপি দেখুন</button></div>`;
 
     const reset = document.querySelector('#reset');
     if (reset) reset.onclick = () => {
-      state.category = 'all'; state.cuisine = 'all'; state.q = ''; search.value = ''; draw();
+      state.category = 'all'; state.q = ''; search.value = ''; draw();
     };
   }
 
   catBar.onclick = e => { const b = e.target.closest('[data-cat]'); if (b) { state.category = b.dataset.cat; draw(); } };
-  cuiBar.onclick = e => { const b = e.target.closest('[data-cui]'); if (b) { state.cuisine = b.dataset.cui; draw(); } };
   search.oninput = e => { state.q = e.target.value; draw(); };
 
   draw();
+  return draw;   // দেশ বদলালে আবার আঁকা হবে
 }
 
 /* ============================================================
@@ -209,9 +268,16 @@ function renderRecipe() {
       <ul>${r.warnings.map(w => `<li>${esc(w)}</li>`).join('')}</ul>
     </div>
 
+    ${matchesPref(r.cuisine) ? '' : `
+      <div class="notice" style="margin-top:26px">
+        এই রেসিপিটি <strong>${cui.flag} ${cui.name}</strong> রান্নার,
+        আর আপনি এখন <strong>${getCuisine(getPref()).name}</strong> রেসিপি দেখছেন।
+        উপরের ⚙️ সেটিংস থেকে দেশ বদলে নিতে পারেন।
+      </div>`}
+
     <h2 style="margin-top:38px">একই বেলার অন্যান্য রেসিপি</h2>
     <div class="grid grid-card">
-      ${recipesInCategory(r.category).filter(x => x.id !== r.id).slice(0, 4).map(recipeCard).join('')}
+      ${visibleInCategory(r.category).filter(x => x.id !== r.id).slice(0, 4).map(recipeCard).join('')}
     </div>`;
 }
 
@@ -219,11 +285,7 @@ function renderRecipe() {
    সাপ্তাহিক তালিকা
    ============================================================ */
 function renderPlan() {
-  const tabs = document.querySelector('#plan-tabs');
-  const out  = document.querySelector('#plan-out');
-  let active = MEAL_PLANS[0].id;
-
-  tabs.innerHTML = MEAL_PLANS.map(p => `<button class="chip" data-plan="${p.id}">${p.name}</button>`).join('');
+  const out = document.querySelector('#plan-out');
 
   const cell = (id) => {
     const r = getRecipe(id);
@@ -231,10 +293,11 @@ function renderPlan() {
   };
 
   function draw() {
-    tabs.querySelectorAll('[data-plan]').forEach(b => b.classList.toggle('on', b.dataset.plan === active));
-    const plan = MEAL_PLANS.find(p => p.id === active);
+    const pref = getPref();
+    const plan = MEAL_PLANS.find(p => p.id === pref) || MEAL_PLANS[0];
 
     out.innerHTML = `
+      <h2>${esc(plan.name)}</h2>
       <p class="muted">${esc(plan.note)}</p>
       <div class="table-scroll">
         <table class="plan">
@@ -255,8 +318,8 @@ function renderPlan() {
       </div>`;
   }
 
-  tabs.onclick = e => { const b = e.target.closest('[data-plan]'); if (b) { active = b.dataset.plan; draw(); } };
   draw();
+  return draw;
 }
 
 /* ============================================================
@@ -276,7 +339,7 @@ function renderFoods() {
 
   function draw() {
     bar.querySelectorAll('[data-type]').forEach(b => b.classList.toggle('on', b.dataset.type === type));
-    const found = FOODS.filter(f => type === 'all' || f.type === type);
+    const found = visibleFoods().filter(f => type === 'all' || f.type === type);
 
     out.innerHTML = found.map(f => {
       const where = f.where === 'bd' ? '🇧🇩' : f.where === 'it' ? '🇮🇹' : '🌏';
@@ -295,6 +358,7 @@ function renderFoods() {
 
   bar.onclick = e => { const b = e.target.closest('[data-type]'); if (b) { type = b.dataset.type; draw(); } };
   draw();
+  return draw;
 }
 
 /* ============================================================
@@ -314,12 +378,17 @@ function renderGuide() {
 document.addEventListener('DOMContentLoaded', () => {
   const page = document.body.dataset.page;
   renderChrome(page);
-  ({
+
+  const render = {
     home:    renderHome,
     recipes: renderRecipes,
     recipe:  renderRecipe,
     plan:    renderPlan,
     foods:   renderFoods,
     guide:   renderGuide
-  }[page] || (() => {}))();
+  }[page] || (() => {});
+
+  // কিছু পেজ নিজের draw() ফেরত দেয় — তাহলে ফিল্টার/সার্চের অবস্থা ধরে রেখে আবার আঁকা যায়
+  const redraw = render();
+  rerenderPage = typeof redraw === 'function' ? redraw : render;
 });
