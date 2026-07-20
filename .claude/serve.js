@@ -19,7 +19,11 @@ http.createServer((req, res) => {
   if (!file.startsWith(ROOT)) { res.writeHead(403).end('forbidden'); return; }
   fs.readFile(file, (err, buf) => {
     if (err) { res.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' }).end('404'); return; }
-    res.writeHead(200, { 'Content-Type': TYPES[path.extname(file)] || 'application/octet-stream' });
+    res.writeHead(200, {
+      'Content-Type': TYPES[path.extname(file)] || 'application/octet-stream',
+      /* ডেভেলপমেন্টে ক্যাশ বন্ধ, নয়তো সম্পাদনার পরও পুরনো ফাইল দেখায় */
+      'Cache-Control': 'no-store, must-revalidate'
+    });
     res.end(buf);
   });
 }).listen(PORT, () => console.log('http://localhost:' + PORT));

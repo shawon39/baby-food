@@ -32,6 +32,28 @@ displayed.
 - Opening a direct link to a recipe from the other country still shows it, with a note
   explaining the mismatch rather than hiding the page.
 
+## The সুস্থতা যাচাই (health) tab
+
+Four tools for answering "is he getting what he needs?", built deliberately around
+**variety over a week** rather than nutrient counting. Every authority checked (NHS, AAP,
+WHO) advises parents *not* to fixate on daily amounts — NHS: "Do not worry about what your
+child eats in a day… It's more helpful to think about what they eat over a week." A
+percentage-of-RDA dashboard would have been building the opposite of expert advice.
+
+- **এই সপ্তাহে** — tap which of the 7 WHO food groups he ate; shows which group is missing
+  over a rolling 7 days and links to matching recipes. No scores, no failure state.
+- **বৃদ্ধি** — weight/height plotted on real WHO centile bands for boys 24–60 months.
+  Deliberately low-frequency: NHS says no more than once every 3 months after age one.
+- **ভিটামিন ডি** — country- and month-aware. The four authorities disagree on the dose
+  (NHS 400 IU vs AAP/EFSA 600 IU), so they are listed separately rather than averaged.
+- **ঠিক পথে আছি তো?** — reassuring signs, warning signs, and what not to do.
+
+All tracking data is `localStorage` only (`shishur-khabar-variety`, `-growth`, `-dob`) —
+nothing leaves the browser. Growth data source: WHO `tab_wfa_boys_p_0_5.xlsx` and
+`tab_lhfa_boys_p_2_5.xlsx`, verified by recomputing all 370 percentiles from the published
+LMS parameters. Note WHO's 0.7 cm length→height discontinuity at 24 months: do not extend
+this chart below 24 months by prepending the length table.
+
 ## Structure
 
 ```

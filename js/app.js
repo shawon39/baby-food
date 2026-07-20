@@ -45,6 +45,7 @@ const NAV = [
   { href: 'recipes.html',   label: 'সব রেসিপি',      page: 'recipes' },
   { href: 'meal-plan.html', label: 'সাপ্তাহিক তালিকা', page: 'plan' },
   { href: 'foods.html',     label: 'ফল ও সবজি',      page: 'foods' },
+  { href: 'health.html',    label: 'সুস্থতা যাচাই',   page: 'health' },
   { href: 'guide.html',     label: 'নির্দেশিকা',     page: 'guide' }
 ];
 
@@ -390,7 +391,9 @@ document.addEventListener('DOMContentLoaded', () => {
     recipe:  renderRecipe,
     plan:    renderPlan,
     foods:   renderFoods,
-    guide:   renderGuide
+    guide:   renderGuide,
+    /* health.js শুধু সুস্থতা পাতাতেই লোড হয় */
+    health:  typeof renderHealth === 'function' ? renderHealth : (() => {})
   }[page] || (() => {});
 
   // কিছু পেজ নিজের draw() ফেরত দেয় — তাহলে ফিল্টার/সার্চের অবস্থা ধরে রেখে আবার আঁকা যায়

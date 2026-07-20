@@ -287,6 +287,77 @@ table.plan td a:hover { color: var(--brand-dark); text-decoration: underline; }
 .food-card dd { margin: 2px 0 0; font-size: .89rem; }
 .food-card dl { margin: 0; }
 
+/* ---------------- সুস্থতা: সাপ্তাহিক বৈচিত্র্য ---------------- */
+.day-strip { display: flex; gap: 8px; flex-wrap: wrap; }
+.day-pill {
+  flex: 1 1 0; min-width: 62px;
+  display: flex; flex-direction: column; align-items: center; gap: 2px;
+  background: var(--surface); border: 1px solid var(--line);
+  border-radius: var(--radius-sm); padding: 9px 4px;
+  cursor: pointer; font-family: inherit; color: var(--text-soft);
+  transition: all .15s;
+}
+.day-pill:hover { border-color: var(--brand); }
+.day-pill.on { background: var(--brand-soft); border-color: var(--brand); color: var(--brand-dark); }
+.day-name { font-size: .78rem; }
+.day-num  { font-size: 1.05rem; font-weight: 600; color: var(--text); }
+.day-pill.on .day-num { color: var(--brand-dark); }
+.day-dots { font-size: .5rem; letter-spacing: 1px; color: var(--green); line-height: 1; min-height: 8px; }
+
+.group-grid { display: grid; gap: 11px; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); }
+.group-btn {
+  text-align: start; background: var(--surface);
+  border: 1.5px solid var(--line); border-radius: var(--radius);
+  padding: 13px 15px; cursor: pointer; font-family: inherit; color: var(--text);
+  display: flex; flex-direction: column; gap: 3px; transition: all .15s;
+}
+.group-btn:hover { border-color: var(--brand); }
+.group-btn.on { background: var(--green-soft); border-color: var(--green); }
+.group-btn.on::after { content: '✓ দেওয়া হয়েছে'; font-size: .78rem; color: var(--green); font-weight: 600; }
+.group-icon { font-size: 1.5rem; line-height: 1; }
+.group-name { font-weight: 600; font-size: .97rem; }
+.group-eg   { font-size: .8rem; color: var(--text-soft); line-height: 1.5; }
+
+.gap-row {
+  display: flex; gap: 14px; justify-content: space-between; flex-wrap: wrap;
+  padding: 12px 0; border-top: 1px solid var(--line);
+}
+.gap-links { display: flex; gap: 6px; flex-wrap: wrap; align-items: flex-start; }
+.gap-links a { text-decoration: none; }
+
+/* ---------------- সুস্থতা: বৃদ্ধি ---------------- */
+.form-row { display: grid; gap: 13px; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); margin-bottom: 16px; }
+.form-row label { display: flex; flex-direction: column; gap: 5px; font-size: .87rem; color: var(--text-soft); }
+.form-row input {
+  padding: 9px 12px; border: 1px solid var(--line); border-radius: var(--radius-sm);
+  background: var(--bg); color: var(--text); font-family: inherit; font-size: .97rem;
+}
+.form-row input:focus { outline: 2px solid var(--brand); outline-offset: 1px; }
+.growth-svg { min-width: 560px; max-width: 100%; height: auto; }
+.linklike {
+  background: none; border: none; color: var(--brand-dark);
+  cursor: pointer; font-family: inherit; font-size: .85rem; padding: 0; text-decoration: underline;
+}
+
+/* ---------------- সুস্থতা: ভিটামিন ডি ---------------- */
+.month-strip { display: flex; gap: 3px; margin: 14px 0 10px; }
+.month-cell {
+  flex: 1; text-align: center; padding: 9px 2px; border-radius: 7px;
+  font-size: .72rem; color: var(--text); position: relative;
+}
+.month-cell.now { outline: 2px solid var(--brand); outline-offset: 1px; font-weight: 700; }
+.lvl-2 { background: #f7d774; }
+.lvl-1 { background: #e4e0d0; }
+.lvl-0 { background: #c9cfd8; }
+@media (prefers-color-scheme: dark) {
+  .lvl-2 { background: #8a7231; } .lvl-1 { background: #46413a; } .lvl-0 { background: #333a44; }
+}
+.legend { display: flex; gap: 16px; flex-wrap: wrap; font-size: .82rem; color: var(--text-soft); }
+.legend .sw { display: inline-block; width: 13px; height: 13px; border-radius: 4px; vertical-align: -2px; margin-inline-end: 5px; }
+
+.src-list { display: flex; flex-direction: column; gap: 7px; }
+.src-list a { font-size: .88rem; }
+
 /* ---------------- notice / footer ---------------- */
 .notice {
   background: var(--amber-soft); border: 1px solid transparent;
