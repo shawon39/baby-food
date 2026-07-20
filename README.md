@@ -54,6 +54,27 @@ nothing leaves the browser. Growth data source: WHO `tab_wfa_boys_p_0_5.xlsx` an
 LMS parameters. Note WHO's 0.7 cm length→height discontinuity at 24 months: do not extend
 this chart below 24 months by prepending the length table.
 
+## Printing a recipe
+
+The 🖨 button on a recipe page prints **only that recipe**, on **one A4 page**. Related
+recipes, the country-mismatch notice, navigation and footer are all excluded.
+
+Print layout: image + title + badges across the top, then a 2×2 grid of
+উপকরণ | প্রস্তুত প্রণালী over উপকারিতা | সতর্কতা, then a one-line footer carrying the
+category, cuisine, time, portion and the medical disclaimer.
+
+**One-page fit is measured, not assumed.** A harness renders every recipe at A4 content
+width (186mm) with the print stylesheet applied and measures height against the 275mm
+budget. Current numbers: all 58 fit; the tallest (`mach-jhol-bhat`) fills 84%, the shortest
+59%. Body text is 12pt — deliberately large, because the leftover headroom is worth more as
+legibility at arm's length in a kitchen than as blank paper.
+
+If you add a much longer recipe, `PRINT_DENSE_ABOVE` in [js/app.js](js/app.js) drops it to a
+10pt layout automatically. Measured limits: normal 12pt overflows above ~1590 characters
+(counting intro + ingredients + steps + benefits + warnings), the 10pt fallback holds to
+~2580. Beyond that it will spill to a second page — no stylesheet can fix that, the recipe
+would need splitting.
+
 ## Structure
 
 ```

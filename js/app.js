@@ -11,6 +11,12 @@ const esc = (s) => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;
 /* সংখ্যা বাংলা অঙ্কে দেখানোর জন্য — বাকি সাইটের সাথে মিল রাখতে */
 const bn = (n) => String(n).replace(/\d/g, d => '০১২৩৪৫৬৭৮৯'[d]);
 
+/* ছাপার সময় এক পাতায় ধরানোর সীমা (অক্ষর সংখ্যা)।
+   মেপে পাওয়া: A4-তে সাধারণ মাপে ~১৫৯০ অক্ষরের পর দ্বিতীয় পাতায় গড়ায়,
+   তাই এখানে ১৪০০-এ থামানো হয়েছে। বর্তমান রেসিপিগুলোর সবচেয়ে বড়টি ১২১৩,
+   অর্থাৎ এখন কোনোটিই ছোট হরফে যায় না। ছোট হরফে ~২৫৮০ অক্ষর পর্যন্ত ধরে। */
+const PRINT_DENSE_ABOVE = 1400;
+
 /* ---------- দেশের পছন্দ (ব্রাউজারে সংরক্ষিত থাকে) ----------
    বাংলাদেশি ও ইতালিয়ান রেসিপি একসাথে না দেখিয়ে একবারে একটি দেশ দেখানো হয়।
    'both' চিহ্নিত রেসিপি দুই অবস্থাতেই দেখানো হয়, কারণ সেগুলো দুই দেশেই চলে। */
@@ -230,6 +236,12 @@ function renderRecipe() {
   const cui = getCuisine(r.cuisine);
   document.title = `${r.title} — শিশুর খাবার`;
 
+  /* লম্বা রেসিপি এক পাতায় ধরাতে ছাপার সময় এক ধাপ ছোট হরফ ব্যবহার হয়।
+     সীমাটি ৫৮টি রেসিপি মেপে ঠিক করা — বিস্তারিত README-তে। */
+  const printWeight = [r.intro, ...r.ingredients, ...r.steps, ...r.benefits, ...r.warnings]
+    .join(' ').length;
+  document.body.classList.toggle('print-dense', printWeight > PRINT_DENSE_ABOVE);
+
   root.innerHTML = `
     <a class="backlink" href="recipes.html?category=${r.category}">← ${cat.name}-এর সব রেসিপি</a>
 
@@ -259,26 +271,38 @@ function renderRecipe() {
       </div>
     </div>
 
-    <div class="panel panel-good">
-      <h2>💚 উপকারিতা</h2>
-      <ul>${r.benefits.map(b => `<li>${esc(b)}</li>`).join('')}</ul>
+    <!-- ছাপার সময় উপকারিতা ও সতর্কতা পাশাপাশি বসে; পর্দায় display:contents বলে
+         মোড়কটি কোনো প্রভাব ফেলে না -->
+    <div class="notes-wrap">
+      <div class="panel panel-good">
+        <h2>💚 উপকারিতা</h2>
+        <ul>${r.benefits.map(b => `<li>${esc(b)}</li>`).join('')}</ul>
+      </div>
+
+      <div class="panel panel-warn">
+        <h2>⚠️ সতর্কতা ও সম্ভাব্য প্রতিক্রিয়া</h2>
+        <ul>${r.warnings.map(w => `<li>${esc(w)}</li>`).join('')}</ul>
+      </div>
     </div>
 
-    <div class="panel panel-warn">
-      <h2>⚠️ সতর্কতা ও সম্ভাব্য প্রতিক্রিয়া</h2>
-      <ul>${r.warnings.map(w => `<li>${esc(w)}</li>`).join('')}</ul>
+    <!-- শুধু ছাপার কাগজে দেখা যায় -->
+    <div class="print-foot">
+      <span>শিশুর খাবার — ${esc(cat.name)} · ${esc(cui.name)} · ${esc(r.time)} · ${esc(r.portion)}</span>
+      <span>এটি সাধারণ নির্দেশনা, চিকিৎসা পরামর্শ নয়। শিশুর অ্যালার্জি বা কোনো সমস্যা থাকলে শিশু বিশেষজ্ঞের পরামর্শ নিন।</span>
     </div>
 
     ${matchesPref(r.cuisine) ? '' : `
-      <div class="notice" style="margin-top:26px">
+      <div class="notice no-print" style="margin-top:26px">
         এই রেসিপিটি <strong>${cui.flag} ${cui.name}</strong> রান্নার,
         আর আপনি এখন <strong>${getCuisine(getPref()).name}</strong> রেসিপি দেখছেন।
         উপরের ⚙️ সেটিংস থেকে দেশ বদলে নিতে পারেন।
       </div>`}
 
-    <h2 style="margin-top:38px">একই বেলার অন্যান্য রেসিপি</h2>
-    <div class="grid grid-card">
-      ${visibleInCategory(r.category).filter(x => x.id !== r.id).slice(0, 4).map(recipeCard).join('')}
+    <div class="no-print">
+      <h2 style="margin-top:38px">একই বেলার অন্যান্য রেসিপি</h2>
+      <div class="grid grid-card">
+        ${visibleInCategory(r.category).filter(x => x.id !== r.id).slice(0, 4).map(recipeCard).join('')}
+      </div>
     </div>`;
 }
 

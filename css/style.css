@@ -394,12 +394,89 @@ table.plan td a:hover { color: var(--brand-dark); text-decoration: underline; }
   }
 }
 
-/* ---------------- print (রেসিপি ছাপানোর জন্য) ---------------- */
+/* পর্দায় মোড়কটি অদৃশ্য — সন্তানগুলো সরাসরি প্যারেন্টের ভেতরেই বসে */
+.notes-wrap { display: contents; }
+.print-foot { display: none; }
+
+/* ---------------- print (রেসিপি ছাপানোর জন্য) ----------------
+   লক্ষ্য: যে রেসিপিটি খোলা আছে শুধু সেটিই, এক পাতায়, পড়ার মতো বড় হরফে।
+   ------------------------------------------------------------- */
 @media print {
-  .site-header, .site-footer, .backlink, .btn, .filters, .settings, .no-print { display: none !important; }
-  body { background: #fff; color: #000; font-size: 12pt; }
-  .panel { border: 1px solid #ccc; background: #fff !important; page-break-inside: avoid; }
-  .recipe-head { grid-template-columns: 1fr; }
-  .recipe-head img { max-width: 240px; }
-  a { text-decoration: none; color: #000; }
+  @page { size: A4 portrait; margin: 11mm 12mm; }
+
+  /* সাইটের কাঠামো বাদ — সব পাতাতেই।
+     রেসিপির পাতায় সম্পর্কিত রেসিপি ও দেশ-অমিলের নোটিশে .no-print বসানো আছে,
+     তাই এখানে .notice বা .section-head ঢালাওভাবে লুকানো হয়নি — নয়তো
+     নির্দেশিকা বা সুস্থতা পাতা ছাপলে তাদের শিরোনামও উধাও হয়ে যেত। */
+  .site-header, .site-footer, .backlink, .btn, .filters, .settings,
+  .no-print { display: none !important; }
+
+  html, body {
+    background: #fff !important; color: #000 !important;
+    /* মেপে দেখা গেছে সবচেয়ে লম্বা রেসিপিও এই মাপে এক পাতায় ধরে,
+       তাই রান্নাঘরে হাত-দূরত্ব থেকে পড়ার মতো বড় হরফ রাখা হয়েছে */
+    font-size: 12pt; line-height: 1.5;
+  }
+  section { padding: 0 !important; }
+  .wrap { max-width: none !important; padding: 0 !important; margin: 0 !important; }
+  a { text-decoration: none; color: #000 !important; }
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  h1 { font-size: 21pt; margin: 0 0 2mm; line-height: 1.2; }
+  h2 { font-size: 12.5pt; margin: 0 0 2mm; line-height: 1.25; }
+  p  { margin: 0 0 2mm; }
+
+  /* ---- উপরের অংশ: ছবি বাঁয়ে, নাম ও তথ্য ডানে ---- */
+  .recipe-head {
+    display: grid !important; grid-template-columns: 44mm 1fr;
+    gap: 6mm; margin: 0 0 5mm; align-items: start;
+    break-inside: avoid;
+  }
+  .recipe-head img {
+    width: 44mm; max-width: 44mm; height: auto;
+    border: 1px solid #ddd; border-radius: 2.5mm;
+  }
+  .recipe-head .muted { font-size: 11pt; color: #444 !important; margin: 0 0 3mm; }
+  .badges { display: flex; flex-wrap: wrap; gap: 2mm; margin: 0; }
+  .badges .tag {
+    font-size: 9.5pt; padding: 0.8mm 2.5mm; border-radius: 99px;
+    border: 1px solid #bbb; background: #fff !important; color: #000 !important;
+  }
+
+  /* ---- উপকরণ | প্রণালী এবং উপকারিতা | সতর্কতা — দুই কলামে ---- */
+  .two-col, .notes-wrap {
+    display: grid !important; grid-template-columns: 1fr 1fr;
+    gap: 5mm; margin: 0 0 5mm !important; align-items: start;
+  }
+  .panel {
+    background: #fff !important; border: 1px solid #ccc !important;
+    border-radius: 2mm; padding: 4mm 4.5mm; margin: 0;
+    break-inside: avoid;
+  }
+  .panel-good { border-color: #9ec3a6 !important; }
+  .panel-warn { border-color: #dcb679 !important; }
+  .panel-good h2, .panel-warn h2 { color: #000 !important; }
+  .panel ul, .panel ol { padding-inline-start: 5.5mm; margin: 0; }
+  .panel li { margin-bottom: 1.6mm; }
+  .panel li::marker { color: #666; }
+
+  /* ---- পাতার নিচে এক লাইনের পরিচয় ও দাবিত্যাগ ---- */
+  .print-foot {
+    display: flex !important; justify-content: space-between; gap: 6mm;
+    border-top: 1px solid #ccc; padding-top: 2.5mm; margin-top: 1mm;
+    font-size: 8.5pt; color: #555 !important; break-inside: avoid;
+  }
+  .print-foot span:last-child { text-align: end; }
+
+  /* ---- ভবিষ্যতে অস্বাভাবিক লম্বা রেসিপি যোগ হলে এক ধাপ ছোট হরফ (JS বসায়),
+         যাতে তখনও এক পাতাতেই ধরে ---- */
+  body.print-dense { font-size: 10pt; line-height: 1.4; }
+  body.print-dense h1 { font-size: 17pt; }
+  body.print-dense h2 { font-size: 11pt; }
+  body.print-dense .recipe-head { grid-template-columns: 34mm 1fr; gap: 5mm; margin-bottom: 3.5mm; }
+  body.print-dense .recipe-head img { width: 34mm; max-width: 34mm; }
+  body.print-dense .recipe-head .muted { font-size: 9.5pt; }
+  body.print-dense .two-col, body.print-dense .notes-wrap { gap: 4mm; margin-bottom: 3.5mm !important; }
+  body.print-dense .panel { padding: 3mm 3.5mm; }
+  body.print-dense .panel li { margin-bottom: 1mm; }
 }
