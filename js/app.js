@@ -345,8 +345,13 @@ function renderFoods() {
       const where = f.where === 'bd' ? '🇧🇩' : f.where === 'it' ? '🇮🇹' : '🌏';
       return `
         <div class="card food-card">
-          <h3><span>${f.type === 'fruit' ? '🍎' : '🥕'}</span> ${esc(f.name)} <span style="font-size:.9rem">${where}</span></h3>
-          <div class="season">মৌসুম: ${esc(f.season)}</div>
+          <div class="food-head">
+            <img class="food-icon" src="images/food-${f.id}.svg" alt="" loading="lazy">
+            <div>
+              <h3>${esc(f.name)} <span class="food-where">${where}</span></h3>
+              <div class="season">মৌসুম: ${esc(f.season)}</div>
+            </div>
+          </div>
           <dl>
             <dt>যেভাবে দেবেন</dt><dd>${esc(f.prep)}</dd>
             <dt>উপকারিতা</dt><dd>${esc(f.benefits)}</dd>
